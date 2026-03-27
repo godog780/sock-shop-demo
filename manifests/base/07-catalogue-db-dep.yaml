@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -16,6 +15,8 @@ spec:
       labels:
         name: catalogue-db
     spec:
+      securityContext:
+        fsGroup: 999
       containers:
         - name: catalogue-db
           image: quay.io/powercloud/sock-shop-catalogue-db:latest
@@ -44,6 +45,7 @@ spec:
             - mountPath: /var/lib/mysql
               name: catalogue-data
           securityContext:
+            runAsUser: 999
             privileged: false
             seccompProfile:
               type: RuntimeDefault
