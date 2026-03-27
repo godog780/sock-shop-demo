@@ -6,6 +6,7 @@ metadata:
   labels:
     service: front-end
 spec:
+  ingressClassName: kommander-traefik
   rules:
   - http:
       paths:
@@ -15,4 +16,4 @@ spec:
           service:
             name: front-end
             port:
-              number: 8079
+              number: 80
