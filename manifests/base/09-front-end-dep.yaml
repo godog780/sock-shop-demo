@@ -33,7 +33,6 @@ spec:
             - name: SESSION_REDIS
               value: "true"
           securityContext:
-            runAsNonRoot: true
             capabilities:
               drop:
                 - all

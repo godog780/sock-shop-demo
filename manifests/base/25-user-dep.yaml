@@ -39,7 +39,6 @@ spec:
             - name: USER_DATABASE
               value: mongodb
           securityContext:
-            runAsNonRoot: true
           livenessProbe:
             httpGet:
               path: /health
