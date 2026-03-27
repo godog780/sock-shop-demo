@@ -1,4 +1,3 @@
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -18,6 +17,8 @@ spec:
       annotations:
         prometheus.io.scrape: "false"
     spec:
+      securityContext:
+        fsGroup: 999
       containers:
         - name: session-db
           image: redis:7-alpine
@@ -33,6 +34,7 @@ spec:
             - name: redis
               containerPort: 6379
           securityContext:
+            runAsUser: 999
             capabilities:
               drop:
                 - all
