@@ -31,12 +31,26 @@ spec:
               name: rabbitmq
           securityContext:
             readOnlyRootFilesystem: false
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 500m
+              memory: 512Mi
         - name: rabbitmq-exporter
           image: ghcr.io/kbudde/rabbitmq_exporter:1.0.0
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 9090
               name: exporter
+          resources:
+            requests:
+              cpu: 50m
+              memory: 32Mi
+            limits:
+              cpu: 200m
+              memory: 128Mi
       nodeSelector:
         node-role.kubernetes.io/worker: ""
         kubernetes.io/arch: amd64
