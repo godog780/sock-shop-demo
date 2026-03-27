@@ -34,5 +34,17 @@ spec:
               memory: 300Mi
           ports:
             - containerPort: 8080
+          securityContext:
+            capabilities:
+              drop:
+                - all
+            readOnlyRootFilesystem: true
+          volumeMounts:
+            - mountPath: /tmp
+              name: tmp-volume
+      volumes:
+        - name: tmp-volume
+          emptyDir:
+            medium: Memory
       nodeSelector:
         node-role.kubernetes.io/worker: ""
