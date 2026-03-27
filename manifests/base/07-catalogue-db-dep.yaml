@@ -39,7 +39,7 @@ spec:
               memory: 100Mi
             limits:
               cpu: 500m
-              memory: 500Mi
+              memory: 150Mi
           volumeMounts:
             - mountPath: /var/lib/mysql
               name: catalogue-data
