@@ -23,6 +23,13 @@ spec:
             - name: mongo
               containerPort: 27017
           securityContext:
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+            limits:
+              cpu: 500m
+              memory: 500Mi
           volumeMounts:
             - mountPath: /tmp
               name: users-db-temp-vol
