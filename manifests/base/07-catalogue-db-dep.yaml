@@ -7,6 +7,8 @@ metadata:
   namespace: sock-shop
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
   selector:
     matchLabels:
       name: catalogue-db
@@ -37,25 +39,23 @@ spec:
           resources:
             requests:
               cpu: 100m
-              memory: 100Mi
+              memory: 150Mi
             limits:
               cpu: 500m
-              memory: 150Mi
+              memory: 512Mi
           volumeMounts:
             - mountPath: /var/lib/mysql
               name: catalogue-data
+            - mountPath: /var/run/mysqld
+              name: catalogue-run
           securityContext:
             runAsUser: 999
-            privileged: false
-            seccompProfile:
-              type: RuntimeDefault
-            capabilities:
-              drop:
-                - ALL
       volumes:
         - name: catalogue-data
           emptyDir:
             medium: Memory
+        - name: catalogue-run
+          emptyDir: {}
       nodeSelector:
         kubernetes.io/arch: amd64
         node-role.kubernetes.io/worker: ""
