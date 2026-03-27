@@ -23,7 +23,6 @@ spec:
             - name: mongo
               containerPort: 27017
           securityContext:
-            readOnlyRootFilesystem: true
           volumeMounts:
             - mountPath: /tmp
               name: carts-db-temp-vol
