@@ -36,17 +36,16 @@ spec:
               cpu: 500m
               memory: 512Mi
           volumeMounts:
-            - mountPath: /tmp
-              name: orders-db-temp-vol
             - mountPath: /data/db
               name: orders-db-vol
+            - mountPath: /tmp
+              name: orders-db-temp-vol
       volumes:
         - name: orders-db-vol
-          emptyDir:
-            medium: Memory
-        - name: orders-db-temp-vol
           persistentVolumeClaim:
             claimName: orders-db-temp-pvc
+        - name: orders-db-temp-vol
+          emptyDir: {}
       nodeSelector:
         node-role.kubernetes.io/worker: ""
         kubernetes.io/arch: amd64
